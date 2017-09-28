@@ -1,12 +1,15 @@
 import re
 
-def stemmer(word):
-    pattern = r'di'
+rule1 = r'pen([cdjz])(.*)'
+
+def stemmer(word, pattern):
     ganti = ''
-    word = re.sub(pattern, ganti, word)
+    matched = re.match(rule1, word)
+    if matched:
+        return matched.group(1) + matched.group(2)
     return word
 
-words = ['dimakan', 'dibuat', 'dirasakan']
+words = ['dimakan', 'dibuat', 'dirasakan', 'pendahulu', 'penjarah']
 
 for word in words:
-    print(stemmer(word))
+    print(stemmer(word, rule1))
